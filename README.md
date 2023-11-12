@@ -1,2 +1,2 @@
 # Pyhon projects 
-Projects written in python for learning and practice combined in one place 
+Python projects for learning and practice combined in one place 

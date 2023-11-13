@@ -1,1 +1,1 @@
-# Simple python program to convert text file into file with morse code (and vice versa)
+# Simple python program to convert txt file with text into txt file with morse code (and vice versa)

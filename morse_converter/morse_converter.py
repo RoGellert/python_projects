@@ -13,19 +13,16 @@ def convert(argv: list[str]):
     return
 
 
-def preprocess_string(text: list[str]) -> list[str]:
-    if text[len(text)-1] == "":
-        for i in range(len(text)-1):
-            text[i] = text[i][:-1]
-    else:
-        for i in range(len(text)):
-            text[i] = text[i][:-1]
+def preprocess_string(text: list[str]) -> list[list[str]]:
+    text_processed = []
+    for i in range(len(text)):
+        text_processed.append(text[i].strip().split(" "))
 
-    return text
+    return text_processed
 
 
 if __name__ == "__main__":
-    with open("test_input1.txt") as f:
+    with open("test_input_morse.txt") as f:
         lines = f.readlines()
     #convert(sys.argv)
     print(lines)

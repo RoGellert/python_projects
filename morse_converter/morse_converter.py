@@ -24,8 +24,8 @@ def preprocess_string(text: list[str]) -> list[list[str]]:
 if __name__ == "__main__":
     with open("test_input_morse.txt") as f:
         lines = f.readlines()
-    #convert(sys.argv)
     print(lines)
     print(preprocess_string(lines))
     f.close()
+
 

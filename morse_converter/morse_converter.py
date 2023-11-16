@@ -60,5 +60,6 @@ def convert_morse_to_text(text: list[list[str]]) -> str:
 
 if __name__ == "__main__":
     convert(sys.argv)
+    print(f"Created output file {sys.argv[3]}.txt")
 
 

@@ -1,5 +1,7 @@
 # Pyhon projects 
-Python projects for learning and practice combined in one place <br>
+Python projects for learning and practice combined in one place
+
+All project folders have a separate README.md inside
 
 |          **Project**           |  **Language**  |  **Libraries + frameworks**  |  **Scope**  |                       **Description**                        |   **Folder**    |
 |:------------------------------:|:--------------:|:----------------------------:|:-----------:|:------------------------------------------------------------:|:---------------:|

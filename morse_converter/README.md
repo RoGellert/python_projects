@@ -47,7 +47,7 @@ a
 test
 input into converter 12345.
 ```
-will convert into
+will be converted into
 
 ```txt
 - **** ** *** 
@@ -74,7 +74,7 @@ And the file with the following morse code:
 -*-* --- -* ***- * *-* - 
 *---- **--- **--- ****- ----* ---** **--- ----* ****- ---** **--- ----* ****- EOS 
 ```
-will convert into
+will be converted into
 
 ```txt
 THIS

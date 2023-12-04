@@ -1,5 +1,6 @@
 import selenium
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 import bs4 as soup
 import time
 
@@ -17,7 +18,8 @@ if __name__ == '__main__':
 
     driver.get(url)
     driver.maximize_window()
-    driver.execute_script("window.scrollTo(0, 1000);")
+    #confirmation = driver.find_element(By.XPATH, "yt-spec-touch-feedback-shape__fill")
+    #confirmation.click()
 
 
 

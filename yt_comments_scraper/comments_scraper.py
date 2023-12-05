@@ -15,9 +15,12 @@ if __name__ == '__main__':
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
     driver = webdriver.Chrome(options=options)
+    driver.implicitly_wait(10)
 
     driver.get(url)
     driver.maximize_window()
+
+    driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
     #confirmation = driver.find_element(By.XPATH, "yt-spec-touch-feedback-shape__fill")
     #confirmation.click()
 

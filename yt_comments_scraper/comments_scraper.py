@@ -15,14 +15,22 @@ if __name__ == '__main__':
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
     driver = webdriver.Chrome(options=options)
-    driver.implicitly_wait(10)
 
     driver.get(url)
     driver.maximize_window()
+    driver.implicitly_wait(10)
 
-    driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-    #confirmation = driver.find_element(By.XPATH, "yt-spec-touch-feedback-shape__fill")
+    #confirmation = driver.find_element(By.XPATH, '//div[@class="eom-button-row style-scope '
+                      #                           'ytd-consent-bump-v2-lightbox"]')
     #confirmation.click()
+
+    confirmation = driver.find_element(By.XPATH, '(//ytd-button-renderer[@class="style-scope ytd-consent-bump-v2-lightbox"])[3]')
+    confirmation.click()
+
+
+
+
+
 
 
 

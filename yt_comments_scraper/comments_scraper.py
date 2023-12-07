@@ -45,17 +45,3 @@ if __name__ == '__main__':
 
     comments = BeautifulSoup(comments_data, 'html.parser')
     print(comments)
-
-
-
-
-
-
-
-
-
-
-
-
-
-

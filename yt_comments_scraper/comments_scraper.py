@@ -2,7 +2,7 @@ import selenium
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
-import bs4 as soup
+from bs4 import BeautifulSoup
 import time
 
 
@@ -32,14 +32,20 @@ if __name__ == '__main__':
 
     driver.refresh()
 
-    element = driver.find_element(By.XPATH,'//video')
+    element = driver.find_element(By.XPATH, '//video')
     actions.move_to_element(to_element=element).perform()
 
-    element = driver.find_element(By.XPATH,'//button[@aria-keyshortcuts="k"]')
+    element = driver.find_element(By.XPATH, '//button[@aria-keyshortcuts="k"]')
     actions.click(element).perform()
 
-    actions.scroll_by_amount(0, 1000).perform()
-    actions.scroll_by_amount(0, 100000).perform()
+    actions.scroll_by_amount(0, 800).perform()
+
+    comments = driver.find_element(By.XPATH, '//*[@id="comments"]')
+    comments_data = comments.get_attribute('innerHTML')
+
+    comments = BeautifulSoup(comments_data, 'html.parser')
+    print(comments)
+
 
 
 

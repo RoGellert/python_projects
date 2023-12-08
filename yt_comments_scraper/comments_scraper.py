@@ -14,18 +14,12 @@ if __name__ == '__main__':
     url = 'https://www.youtube.com/watch?v=O5BJVO3PDeQ&t=2414s'
 
     options = webdriver.ChromeOptions()
-    options.add_experimental_option("detach", True)
     driver = webdriver.Chrome(options=options)
+    driver.maximize_window()
+    actions = ActionChains(driver)
 
     driver.get(url)
-    driver.maximize_window()
     driver.implicitly_wait(13)
-
-    #confirmation = driver.find_element(By.XPATH, '//div[@class="eom-button-row style-scope '
-                      #                           'ytd-consent-bump-v2-lightbox"]')
-    #confirmation.click()
-
-    actions = ActionChains(driver)
 
     element = driver.find_element(By.XPATH, '(//ytd-button-renderer[@class="style-scope ytd-consent-bump-v2-lightbox"])[3]')
     actions.click(element).perform()

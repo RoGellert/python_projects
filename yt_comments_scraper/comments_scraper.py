@@ -32,10 +32,10 @@ if __name__ == '__main__':
     element = driver.find_element(By.XPATH, '//button[@aria-keyshortcuts="k"]')
     actions.click(element).perform()
 
-    actions.scroll_by_amount(0, 800).perform()
+    actions.scroll_by_amount(0, 1000).perform()
 
     comments = driver.find_element(By.XPATH, '//*[@id="comments"]')
     comments_data = comments.get_attribute('innerHTML')
 
-    comments = BeautifulSoup(comments_data, 'html.parser')
-    print(comments)
+    comments_data_soup = BeautifulSoup(comments_data, 'html.parser')
+    print(comments_data_soup)

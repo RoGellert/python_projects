@@ -33,9 +33,11 @@ if __name__ == '__main__':
     actions.scroll_by_amount(0, 1000).perform()
     driver.implicitly_wait(6)
 
-    comments = driver.find_element(By.XPATH, '//yt-formatted-string[@id="content-text" and @slot="content"]')
-    comments_data = comments.get_attribute('innerHTML')
+    comments = driver.find_elements(By.XPATH, '//yt-formatted-string[@id="content-text" and @slot="content"]')
+    comments_data1 = comments[0].get_attribute('innerHTML')
+    comments_data2 = comments[1].get_attribute('innerHTML')
+    print(comments_data1, comments_data2)
 
-    comments_data_soup = BeautifulSoup(comments_data, 'html.parser')
-    print(comments_data_soup)
+    #comments_data_soup = BeautifulSoup(comments_data, 'html.parser')
+    #print(comments_data_soup)
     #comments_data_soup.find("yt-formatted-string", {"id": "content-text"})

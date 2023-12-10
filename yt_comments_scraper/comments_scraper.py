@@ -1,9 +1,8 @@
-import selenium
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
-import time
+
 
 
 if __name__ == '__main__':
@@ -22,6 +21,8 @@ if __name__ == '__main__':
 
     driver.refresh()
 
+    driver.implicitly_wait(6)
+
     element = driver.find_element(By.XPATH, '//video')
     actions.move_to_element(to_element=element).perform()
 
@@ -33,10 +34,13 @@ if __name__ == '__main__':
     actions.scroll_by_amount(0, 1000).perform()
     driver.implicitly_wait(6)
 
-    comments = driver.find_elements(By.XPATH, '//yt-formatted-string[@id="content-text" and @slot="content"]')
+    #comments = driver.find_elements(By.XPATH, '//yt-formatted-string[@id="content-text" and @slot="content"]')
+    comments = driver.find_elements(By.XPATH, '//ytd-comment-renderer[@id="comment"]')
     comments_data1 = comments[0].get_attribute('innerHTML')
     comments_data2 = comments[1].get_attribute('innerHTML')
-    print(comments_data1, comments_data2)
+    #print(comments_data1)
+    print(BeautifulSoup(comments_data1, 'html.parser').find_all("span", {"class": "style-scope yt-formatted-string"})[0].text)
+    #print(comments_data2)
 
     #comments_data_soup = BeautifulSoup(comments_data, 'html.parser')
     #print(comments_data_soup)

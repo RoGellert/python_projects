@@ -21,13 +21,12 @@ if __name__ == '__main__':
 
     driver.refresh()
 
-    driver.implicitly_wait(6)
-
     element = driver.find_element(By.XPATH, '//video')
     actions.move_to_element(to_element=element).perform()
 
     element = driver.find_element(By.XPATH, '//button[@aria-keyshortcuts="k"]')
     actions.click(element).perform()
+    driver.implicitly_wait(3)
 
     actions.scroll_by_amount(0, 1000).perform()
     driver.implicitly_wait(6)
@@ -39,7 +38,7 @@ if __name__ == '__main__':
     comments_data1 = comments[0].get_attribute('innerHTML')
     comments_data2 = comments[1].get_attribute('innerHTML')
     #print(comments_data1)
-    print(BeautifulSoup(comments_data1, 'html.parser').find_all("span", {"class": "style-scope yt-formatted-string"})[0].text)
+    print(BeautifulSoup(comments_data1, 'html.parser').find_all("span", {"class": "style-scope yt-formatted-string"})[3].text)
     #print(comments_data2)
 
     #comments_data_soup = BeautifulSoup(comments_data, 'html.parser')

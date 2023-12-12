@@ -27,28 +27,12 @@ if __name__ == '__main__':
     driver.implicitly_wait(10)
 
     actions.scroll_by_amount(0, 1000).perform()
-    driver.implicitly_wait(6)
-    actions.scroll_by_amount(0, 1000).perform()
-    driver.implicitly_wait(6)
-    actions.scroll_by_amount(0, 1000).perform()
-    driver.implicitly_wait(6)
-    actions.scroll_by_amount(0, 1000).perform()
-    driver.implicitly_wait(6)
-    actions.scroll_by_amount(0, 1000).perform()
-    driver.implicitly_wait(6)
-    actions.scroll_by_amount(0, 1000).perform()
-    driver.implicitly_wait(6)
-    actions.scroll_by_amount(0, 1000).perform()
-    driver.implicitly_wait(6)
-    actions.scroll_by_amount(0, 1000).perform()
+    for i in range(1000):
+        actions.scroll_by_amount(0, 10000).perform()
+        driver.implicitly_wait(6)
     driver.implicitly_wait(6)
 
-    #comments = driver.find_elements(By.XPATH, '//yt-formatted-string[@id="content-text" and @slot="content"]')
     comments = driver.find_elements(By.XPATH, '//ytd-comment-renderer[@id="comment"]')
-    comments_data1 = comments[0].get_attribute('innerHTML')
-    comments_data2 = comments[1].get_attribute('innerHTML')
-    print(BeautifulSoup(comments_data1, 'html.parser').find_all("span", {"class": "style-scope yt-formatted-string"}))
-    #print(comments_data2)
 
     comments_list = []
     for comment in comments:
@@ -58,8 +42,3 @@ if __name__ == '__main__':
         comments_list.append(comment_to_append)
 
     print(comments_list)
-
-
-    #comments_data_soup = BeautifulSoup(comments_data, 'html.parser')
-    #print(comments_data_soup)
-    #comments_data_soup.find("yt-formatted-string", {"id": "content-text"})

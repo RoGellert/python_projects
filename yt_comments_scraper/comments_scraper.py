@@ -7,8 +7,7 @@ from bs4 import BeautifulSoup
 if __name__ == '__main__':
     url = 'https://www.youtube.com/watch?v=O5BJVO3PDeQ&t=2414s'
 
-    options = webdriver.ChromeOptions()
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome()
     actions = ActionChains(driver)
 
     driver.get(url)
@@ -50,6 +49,16 @@ if __name__ == '__main__':
     comments_data2 = comments[1].get_attribute('innerHTML')
     print(BeautifulSoup(comments_data1, 'html.parser').find_all("span", {"class": "style-scope yt-formatted-string"}))
     #print(comments_data2)
+
+    comments_list = []
+    for comment in comments:
+        comment_to_append = ""
+        for line in BeautifulSoup(comment.get_attribute('innerHTML'), 'html.parser').find_all("span", {"class": "style-scope yt-formatted-string"}):
+            comment_to_append += line.text + '\n'
+        comments_list.append(comment_to_append)
+
+    print(comments_list)
+
 
     #comments_data_soup = BeautifulSoup(comments_data, 'html.parser')
     #print(comments_data_soup)

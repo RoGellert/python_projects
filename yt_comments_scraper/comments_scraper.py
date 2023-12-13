@@ -27,18 +27,18 @@ if __name__ == '__main__':
     driver.implicitly_wait(10)
 
     actions.scroll_by_amount(0, 1000).perform()
-    for i in range(1000):
+    for i in range(50):
         actions.scroll_by_amount(0, 10000).perform()
         driver.implicitly_wait(6)
     driver.implicitly_wait(6)
 
-    comments = driver.find_elements(By.XPATH, '//ytd-comment-renderer[@id="comment"]')
 
+    comments = driver.find_elements(By.XPATH, '//ytd-comment-renderer[@id="comment"]')
     comments_list = []
     for comment in comments:
-        comment_to_append = ""
+        comment_to_append = []
         for line in BeautifulSoup(comment.get_attribute('innerHTML'), 'html.parser').find_all("span", {"class": "style-scope yt-formatted-string"}):
-            comment_to_append += line.text + '\n'
+            comment_to_append.append(line.text)
         comments_list.append(comment_to_append)
 
     print(comments_list)

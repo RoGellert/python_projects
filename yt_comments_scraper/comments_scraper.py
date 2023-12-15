@@ -27,9 +27,9 @@ if __name__ == '__main__':
     driver.implicitly_wait(10)
 
     actions.scroll_by_amount(0, 1000).perform()
-    for i in range(100):
-        actions.scroll_by_amount(0, 30000).perform()
-        driver.implicitly_wait(6)
+    for i in range(200):
+        actions.scroll_by_amount(0, 2000).perform()
+        driver.implicitly_wait(1)
     driver.implicitly_wait(15)
 
     comments = driver.find_elements(By.XPATH, '//div[@id="comment-content"]')

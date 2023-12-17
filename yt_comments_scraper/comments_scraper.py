@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
+import csv
 
 if __name__ == '__main__':
     url = 'https://www.youtube.com/watch?v=O5BJVO3PDeQ&t=2414s'
@@ -47,15 +48,13 @@ if __name__ == '__main__':
         likes = likes.text.replace(" ", "").replace("\n", "")
         likes = int(likes) if likes[-1] != 'K' else int(float(likes[0:-1]))*1000
 
-        for line in lines:
-            line_text = line.text.replace("\n", " ")
-            line_text.replace("    ", " ")
-            line_text.replace("   ", " ")
-            line_text.replace("  ", " ")
-            comment_to_append.append(line_text)
-        comments_list.append([comment_to_append, likes])
+        text = lines[0].text.replace("\n", "").strip()
+        comments_list.append([text, likes])
 
     for i in comments_list:
         print(i)
 
-    print(type(comments_list[0][0]))
+    with open('./csv_file.csv', 'w', encoding='UTF8') as file:
+        writer = csv.writer(file)
+        writer.writerow(comments_list)
+        file.close()

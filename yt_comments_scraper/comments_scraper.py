@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
+import pandas as pd
 import csv
 
 if __name__ == '__main__':
@@ -51,10 +52,6 @@ if __name__ == '__main__':
         text = lines[0].text.replace("\n", "").strip()
         comments_list.append([text, likes])
 
-    for i in comments_list:
-        print(i)
-
-    with open('./csv_file.csv', 'w', encoding='UTF8') as file:
-        writer = csv.writer(file)
-        writer.writerow(comments_list)
-        file.close()
+    df_to_save = pd.DataFrame(comments_list)
+    print(df_to_save)
+    df_to_save.to_csv('csv_file.csv', index=False)

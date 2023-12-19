@@ -32,7 +32,7 @@ if __name__ == '__main__':
 
     actions.scroll_by_amount(0, 1000).perform()
     driver.implicitly_wait(5)
-    for i in range(100):
+    for i in range(200):
         actions.scroll_by_amount(0, 2000).perform()
         driver.implicitly_wait(5)
     driver.implicitly_wait(15)
@@ -54,4 +54,4 @@ if __name__ == '__main__':
 
     df_to_save = pd.DataFrame(comments_list)
     print(df_to_save)
-    df_to_save.to_csv('csv_file.csv', index=False)
+    df_to_save.to_csv('csv_file.csv', index=False, header=['comment', 'number of likes'])

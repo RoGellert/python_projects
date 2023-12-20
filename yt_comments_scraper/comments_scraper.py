@@ -48,10 +48,11 @@ if __name__ == '__main__':
         likes = content.find("span", {"id": "vote-count-middle"})
         likes = likes.text.replace(" ", "").replace("\n", "")
         likes = int(likes) if likes[-1] != 'K' else int(float(likes[0:-1]))*1000
+        time_posted = content.find("a", {"class": "yt-simple-endpoint style-scope yt-formatted-string"}).text
 
         text = lines[0].text.replace("\n", "").strip()
-        comments_list.append([text, likes])
+        comments_list.append([text, likes, time_posted])
 
     df_to_save = pd.DataFrame(comments_list)
     print(df_to_save)
-    df_to_save.to_csv('csv_file.csv', index=False, header=['comment', 'number of likes'])
+    df_to_save.to_csv('csv_file.csv', index=False, header=['comment', 'number of likes', 'approximate_time_posted'])

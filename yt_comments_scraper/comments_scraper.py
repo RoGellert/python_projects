@@ -3,7 +3,21 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 import pandas as pd
-import csv
+import re
+from datetime import date
+from dateutil.relativedelta import relativedelta
+
+
+def determine_approximate_date(date_text: str, today_date: date) -> str:
+    comment_approximate_date = ''
+    if re.search('year', date_text):
+        comment_approximate_date = today_date - relativedelta(years=int(date_text[0:2].strip()))
+
+    if re.search('month', date_text):
+        comment_approximate_date = today_date - relativedelta(months=int(date_text[0:2].strip()))
+
+    return comment_approximate_date
+
 
 if __name__ == '__main__':
     url = 'https://www.youtube.com/watch?v=O5BJVO3PDeQ&t=2414s'
@@ -39,6 +53,7 @@ if __name__ == '__main__':
 
     comments = driver.find_elements(By.XPATH, '//ytd-comment-renderer[@id="comment"]')
     comments_list = []
+    date_today = date.today()
     for comment in comments:
         comment_to_append = []
 
@@ -49,10 +64,12 @@ if __name__ == '__main__':
         likes = likes.text.replace(" ", "").replace("\n", "")
         likes = int(likes) if likes[-1] != 'K' else int(float(likes[0:-1]))*1000
         time_posted = content.find("a", {"class": "yt-simple-endpoint style-scope yt-formatted-string"}).text
+        time_posted = determine_approximate_date(time_posted, date_today)
 
         text = lines[0].text.replace("\n", "").strip()
         comments_list.append([text, likes, time_posted])
 
     df_to_save = pd.DataFrame(comments_list)
     print(df_to_save)
+    print(df_to_save[2].unique())
     df_to_save.to_csv('csv_file.csv', index=False, header=['comment', 'number of likes', 'approximate_time_posted'])

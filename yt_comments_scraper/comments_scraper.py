@@ -9,12 +9,34 @@ from dateutil.relativedelta import relativedelta
 
 
 def determine_approximate_date(date_text: str, today_date: date) -> str:
+    """
+    Function to approximately calculate day at which the comment was written
+    (based on the label in YouTube comments (i.e '3 month ago'))
+
+    date_text: text of the label
+    today_date: today's date estimated by date.today()
+    returns date in date format
+    """
     comment_approximate_date = ''
+
+    # calculate approximate date based on the value of the input string
     if re.search('year', date_text):
         comment_approximate_date = today_date - relativedelta(years=int(date_text[0:2].strip()))
 
-    if re.search('month', date_text):
+    elif re.search('month', date_text):
         comment_approximate_date = today_date - relativedelta(months=int(date_text[0:2].strip()))
+
+    elif re.search('week', date_text):
+        comment_approximate_date = today_date - relativedelta(weeks=int(date_text[0:2].strip()))
+
+    elif re.search('day', date_text):
+        comment_approximate_date = today_date - relativedelta(days=int(date_text[0:2].strip()))
+
+    elif re.search('yesterday', date_text):
+        comment_approximate_date = today_date - relativedelta(days=1)
+
+    elif re.search('minute', date_text):
+        comment_approximate_date = today_date
 
     return comment_approximate_date
 
@@ -46,7 +68,7 @@ if __name__ == '__main__':
 
     actions.scroll_by_amount(0, 1000).perform()
     driver.implicitly_wait(5)
-    for i in range(200):
+    for i in range(100):
         actions.scroll_by_amount(0, 2000).perform()
         driver.implicitly_wait(5)
     driver.implicitly_wait(15)

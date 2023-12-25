@@ -131,7 +131,7 @@ class Scraper:
             df_to_save.to_csv(f'{save_file_name}.csv',
                               index=False, header=['comment', 'number of likes', 'approximate_time_posted'])
         elif save_type == 'json':
-            df_to_save.to_json(f'{save_file_name}.json', orient="split")
+            df_to_save.to_json(f'{save_file_name}.json', orient="split", date_format='iso')
         else:
             raise TypeError("Invalid save type (can be either csv or json)")
 

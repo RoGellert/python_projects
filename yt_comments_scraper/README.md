@@ -1,6 +1,6 @@
 # Youtube comments scraper
 
-Scrapes the comments, number of likes and approximate date of posting (without the replies) from a YouTube video
+Scrapes the comments (only main without the replies), number of likes and approximate date of posting from a YouTube video
 provided the url. Saves the data either as a json or as a csv
 
 ## Usage 
@@ -27,3 +27,4 @@ Example:
 ```
 python comments_scraper.py https://www.youtube.com/watch?v=YbJOTdZBX1g 100 json test 
 ```
+Examples of output are in ```test.csv``` and ```test.json```

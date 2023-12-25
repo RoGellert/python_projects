@@ -1,5 +1,4 @@
 import sys
-
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
@@ -58,8 +57,8 @@ class Scraper:
         """
         Function to scrape the data and save in 'self.data' as a list
 
-        range_of_scrolling: number of times to scroll down in the comments section
-        (essentially number of comments to scrape)
+        range_of_scrolling: number of times to scroll down in the comments section to load the comments
+        (essentially positively proportional to the number of comments scraped)
         """
         # reassign an empty list to store data to avoid duplicated comments (in case it's non-empty)
         self.data = []
@@ -80,7 +79,7 @@ class Scraper:
                                                 'ytd-consent-bump-v2-lightbox"])[3]')
         actions.click(element).perform()
 
-        # refresh the page for selenium to work properly
+        # refresh the page for selenium parse the html properly
         driver.refresh()
 
         # click to pause video (sometimes for some reason doesn't work, probably due to ads sometimes popping)
@@ -104,16 +103,16 @@ class Scraper:
         for comment in comments:
             content = BeautifulSoup(comment.get_attribute('innerHTML'), 'html.parser')
 
-            # find text of the comments
+            # find and process the text of the comments
             lines = content.find_all("yt-formatted-string", {"id": "content-text"})
             text = lines[0].text.replace("\n", "").strip()
 
-            # find integer representing number of likes
+            # find and process the integer representing number of likes
             likes = content.find("span", {"id": "vote-count-middle"})
             likes = likes.text.replace(" ", "").replace("\n", "")
             likes = int(likes) if likes[-1] != 'K' else int(float(likes[0:-1])) * 1000
 
-            # find string representing time posted
+            # find and process the string representing time posted
             time_posted = content.find("a", {"class": "yt-simple-endpoint style-scope yt-formatted-string"}).text
             time_posted = self.determine_approximate_date(time_posted, self.today_date)
 

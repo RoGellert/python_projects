@@ -85,8 +85,7 @@ morseToLetterDict = {
 
 def return_morse_code(letter: str) -> str:
     """
-    Function returning morse code
-    corresponding to a given letter
+    Function returning morse code corresponding to a given letter
     """
     if letter not in letterToMorseDict.keys():
         raise Exception("Invalid symbol")
@@ -96,8 +95,7 @@ def return_morse_code(letter: str) -> str:
 
 def return_letter(morse_code: str) -> str:
     """
-    Function returning letter
-    corresponding to a given morse code
+    Function returning letter corresponding to a given morse code
     """
     if morse_code not in morseToLetterDict.keys():
         raise Exception("Invalid symbol")

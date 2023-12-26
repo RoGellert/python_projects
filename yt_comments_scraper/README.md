@@ -1,7 +1,9 @@
 # Youtube comments scraper
 
-Scrapes the comments (only main without the replies), number of likes and approximate date of posting from a YouTube video
+Scrapes the comments (only main ones without the replies), number of likes and approximate date of posting from a YouTube video
 provided the url. Saves the data either as a json or as a csv
+
+Dates of posting are approximated based on the label above the comments (such as "three month ago")
 
 ## Usage 
 

@@ -4,7 +4,7 @@ import sys
 
 def convert(argv: list[str]):
     """
-    Function to open a file, convert (text to morse and vice versa) and save in a file
+    Function to open a file, convert (text to morse or vice versa) and save in a file
 
     argv[1]: either [to_morse] or [to_alphabet] signifying type of conversion
     argv[2]: name of input file

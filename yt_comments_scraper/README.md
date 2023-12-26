@@ -7,7 +7,7 @@ Dates of posting are approximated based on the label above the comments (such as
 
 ## Usage 
 
-I used Google Chrome as a browser. If it is installed and added to path it should work just fine 
+I used Google Chrome as a browser. If it is installed and added to PATH it should work just fine 
 
 Libraries required are in ``` requirements.txt ```
 
